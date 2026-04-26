@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PLUX Flexi-Financing | Your Trusted Financial Partner</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand-blue: #241383;
+            --brand-gradient: linear-gradient(135deg, rgba(36, 19, 131, 0.98) 0%, rgba(60, 40, 180, 0.95) 100%);
+            --white: #ffffff;
+            --bg-light: #f6f8ff;
+            --accent: #ffd700;
+        }
+
+        html, body {
+            margin: 0; padding: 0; width: 100%;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: #1a1a1a;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            padding: 20px 15px 120px; 
+            background: var(--brand-gradient), url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: white;
+            width: 100%;
+        }
+
+        .hero-logo { height: 90px; width: auto; filter: brightness(0) invert(1); margin: 0 auto 15px; display: block; }
+        .hero h1 { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 800; margin: 0 0 10px; line-height: 1.1; }
+        .hero p { font-size: 0.95rem; max-width: 550px; margin: 0 auto 20px; opacity: 0.9; }
+
+        /* --- 主容器 (Calculator & Form) --- */
+        .main-card-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: -100px auto 40px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .gx-card {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 25px 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header { font-weight: 800; margin-bottom: 20px; color: var(--brand-blue); font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        .slider-group { margin-bottom: 20px; }
+        .slider-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        .slider-info span:last-child { color: var(--brand-blue); font-size: 1.3rem; font-weight: 800; }
+
+        input[type="range"] { -webkit-appearance: none; width: 100%; height: 7px; background: #eeeef5; border-radius: 10px; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; background: var(--brand-blue); border: 4px solid #fff; border-radius: 50%; box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
+
+        .result-panel { background: #f4f2ff; border-radius: 20px; padding: 25px; text-align: center; min-height: 140px; display: flex; flex-direction: column; justify-content: center; }
+        .result-panel p { color: #888; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; }
+        .result-panel h2 { font-size: 2.8rem; color: var(--brand-blue); font-weight: 800; line-height: 1; margin: 0; }
+
+        /* --- 贅述：放大 Selling Points --- */
+        .selling-points { padding: 40px 15px; width: 100%; }
+        .sp-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .sp-card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 25px;
+            border: 1px solid #eef0f7;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .sp-card:hover { border-color: var(--brand-blue); transform: translateY(-5px); }
+        .sp-card .icon-box {
+            width: 60px; height: 60px;
+            background: #f0edff;
+            border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem; color: var(--brand-blue);
+        }
+        .sp-card h3 { font-size: 1.3rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 12px; }
+        .sp-card p { font-size: 0.95rem; line-height: 1.6; color: #555; margin: 0; }
+
+        /* --- 公司內容描述 --- */
+        .about-company { padding: 60px 15px; background: var(--brand-blue); color: white; text-align: center; width: 100%; }
+        .about-content { max-width: 800px; margin: 0 auto; }
+        .about-content h2 { font-size: 2rem; font-weight: 800; margin-bottom: 20px; }
+        .about-content p { font-size: 1.05rem; opacity: 0.85; line-height: 1.8; margin-bottom: 30px; }
+        .about-stats { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .stat-item { flex: 1; min-width: 120px; }
+        .stat-item h4 { font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-bottom: 5px; }
+        .stat-item p { font-size: 0.8rem; margin: 0; opacity: 0.7; text-transform: uppercase; }
+
+        /* --- Form 強化 --- */
+        .gx-form input { width: 100%; padding: 16px 20px; margin-bottom: 15px; border: 2px solid #f2f2f2; border-radius: 15px; font-size: 1rem; background: #fafafa; }
+        .btn-gx { background: var(--brand-blue); color: white; padding: 18px; border-radius: 15px; width: 100%; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .btn-gx:hover { background: #3422a5; }
+
+        /* --- Testimonials --- */
+        .testimonials { padding: 60px 15px; width: 100%; text-align: center; }
+        .testi-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1200px; margin: 30px auto 0; }
+        .testi-card { background: #fff; padding: 30px; border-radius: 20px; border: 1px solid #f0f0f0; text-align: left; }
+        .testi-content { font-size: 1rem; color: #444; line-height: 1.6; margin-bottom: 15px; font-style: italic; }
+        .author { font-weight: 700; color: var(--brand-blue); font-size: 0.9rem; }
+
+        footer { background: #08041a; color: rgba(255,255,255,0.4); padding: 60px 15px 30px; text-align: center; font-size: 0.75rem; width: 100%; }
+        .footer-logo img { height: 45px; filter: brightness(0) invert(1); margin-bottom: 20px; opacity: 0.4; }
+
+        #successOverlay { position: fixed; inset: 0; background: #fff; display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 10000; text-align: center; padding: 30px; }
+
+        /* --- Desktop --- */
+        @media (min-width: 992px) {
+            .main-card-container { grid-template-columns: 1fr 1fr; margin-top: -120px; gap: 30px; }
+            .sp-grid { grid-template-columns: repeat(3, 1fr); }
+            .hero { padding: 40px 20px 220px; }
+            .hero-logo { height: 110px; }
+            .testi-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div data-aos="fade-down">
+            <img src="logo.png" alt="PLUX Logo" class="hero-logo">
+            <h1>Financing that <br>moves with you.</h1>
+            <p>Your premier licensed financial partner in Malaysia. We provide secure, transparent, and flexible credit solutions for your personal and business growth.</p>
+        </div>
+    </section>
+
+    <div class="main-card-container">
+        <div class="gx-card" data-aos="fade-up">
+            <div class="card-header"><i class="fa-solid fa-calculator"></i> Loan Calculator</div>
+            <div class="slider-group">
+                <div class="slider-info"><span>Desired Amount</span><span id="amtLabel">RM 30,000</span></div>
+                <input type="range" id="amtRange" min="3000" max="80000" step="1000" value="30000">
+            </div>
+            <div class="slider-group">
+                <div class="slider-info"><span>Tenure (1-8 Years)</span><span id="yearLabel">5 Years</span></div>
+                <input type="range" id="yearRange" min="1" max="8" step="1" value="5">
+            </div>
+            <div class="result-panel">
+                <p>Monthly Installment</p>
+                <h2 id="monthlyVal">RM 596.25</h2>
+                <span style="font-size: 0.65rem; color: #aaa; margin-top: 8px;">*Fixed rate 3.85% p.a. apply</span>
+            </div>
+        </div>
+
+        <div class="gx-card gx-form" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-header"><i class="fa-solid fa-paper-plane"></i> Quick Application</div>
+            <form id="applyForm">
+                <input type="text" id="fname" placeholder="Full Name (as per IC)" required>
+                <input type="tel" id="fphone" placeholder="Mobile Number (e.g., 012...)" required>
+                <input type="number" id="famt" placeholder="Amount Required (RM)" required>
+                <p style="font-size: 0.75rem; color: #999; margin-bottom: 20px; line-height: 1.4;">
+                    Our financial consultant will review your profile and contact you within 24 hours.
+                </p>
+                <button type="submit" class="btn-gx">Check Eligibility Now</button>
+            </form>
+        </div>
+    </div>
+
+    <section class="selling-points">
+        <h2 style="text-align: center; color: var(--brand-blue); font-weight: 800; font-size: 2rem; margin-bottom: 40px;">Why Choose PLUX?</h2>
+        <div class="sp-grid">
+            <div class="sp-card" data-aos="fade-up">
+                <div class="icon-box"><i class="fa-solid fa-percent"></i></div>
+                <h3>3.85% Fixed Rate</h3>
+                <p>Enjoy one of Malaysia's most competitive interest rates. Our 3.85% p.a. rate is fixed, meaning your monthly installment stays the same throughout the entire tenure, protected from market fluctuations.</p>
+            </div>
+            <div class="sp-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon-box"><i class="fa-solid fa-shield-check"></i></div>
+                <h3>KPKT Licensed</h3>
+                <p>We are a fully licensed money lender registered under the Ministry of Local Government Development (KPKT). We strictly adhere to the Money Lenders Act 1951, ensuring 100% legal and ethical practices.</p>
+            </div>
+            <div class="sp-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+                <h3>24-Hour Approval</h3>
+                <p>Time is money. Our digital-first review process allows for express processing. Once your documentation is complete, we aim to provide an approval decision within one working day for your peace of mind.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-company">
+        <div class="about-content" data-aos="zoom-in">
+            <h2>Our Mission</h2>
+            <p>
+                PLUX MONEY LENDING SDN. BHD. was founded with a single mission: to empower Malaysians through responsible and transparent financing. Unlike traditional lenders, we focus on accessibility and personalized service, helping individuals and small businesses bridge financial gaps with confidence and security.
+            </p>
+            <div class="about-stats">
+                <div class="stat-item"><h4>8+</h4><p>Years Tenure</p></div>
+                <div class="stat-item"><h4>RM 80K</h4><p>Max Amount</p></div>
+                <div class="stat-item"><h4>100%</h4><p>Legal & Safe</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 data-aos="fade-up">Client Testimonials</h2>
+        <div class="testi-grid">
+            <div class="testi-card" data-aos="fade-up">
+                <p class="testi-content">"The application was so simple. I got my funds within 48 hours for my daughter's education. Very professional team."</p>
+                <div class="author">Puan Siti, Putrajaya</div>
+            </div>
+            <div class="testi-card" data-aos="fade-up" data-aos-delay="100">
+                <p class="testi-content">"Fixed 3.85% is a lifesaver. My business cash flow is much better now. No hidden charges at all."</p>
+                <div class="author">Encik Ahmad, Kuala Lumpur</div>
+            </div>
+            <div class="testi-card" data-aos="fade-up" data-aos-delay="200">
+                <p class="testi-content">"Highly recommend PLUX. They explained every legal clause clearly before I signed anything. Truly trusted."</p>
+                <div class="author">Mr. Tan, Selangor</div>
+            </div>
+        </div>
+    </section>
+
+    <div id="successOverlay">
+        <i class="fa-solid fa-circle-check" style="font-size: 5rem; color: #00d285; margin-bottom: 20px;"></i>
+        <h2 id="sTitle">Application Received</h2>
+        <p id="sBody" style="margin: 20px 0; color: #555; line-height: 1.5;"></p>
+        <button class="btn-gx" style="max-width: 200px;" onclick="location.reload()">Back to Home</button>
+    </div>
+
+    <footer>
+        <div class="footer-logo"><img src="logo.png" alt="PLUX"></div>
+        <p>PLUX MONEY LENDING SDN. BHD. (201301003586 / 1033427-P)</p>
+        <p>© 2026 Licensed Money Lender Malaysia. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, disable: 'mobile' });
+
+        const amtRange = document.getElementById('amtRange');
+        const yearRange = document.getElementById('yearRange');
+        const amtLabel = document.getElementById('amtLabel');
+        const yearLabel = document.getElementById('yearLabel');
+        const monthlyVal = document.getElementById('monthlyVal');
+
+        function calculate() {
+            const P = parseFloat(amtRange.value);
+            const T = parseInt(yearRange.value);
+            const R = 0.0385; 
+            const totalInterest = P * R * T;
+            const totalPayable = P + totalInterest;
+            const monthly = totalPayable / (T * 12);
+
+            amtLabel.innerText = "RM " + P.toLocaleString();
+            yearLabel.innerText = T + (T > 1 ? " Years" : " Year");
+            monthlyVal.innerText = "RM " + monthly.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+
+        amtRange.addEventListener('input', calculate);
+        yearRange.addEventListener('input', calculate);
+
+        document.getElementById('applyForm').onsubmit = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('fname').value;
+            document.getElementById('sBody').innerHTML = `Hi <strong>${name}</strong>, your application has been received.<br>Our team will contact you shortly to verify your details.`;
+            document.getElementById('successOverlay').style.display = 'flex';
+        };
+
+        calculate();
+    </script>
+</body>
+</html>
